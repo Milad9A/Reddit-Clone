@@ -50,4 +50,10 @@ class CommunityRepository {
       return communities;
     });
   }
+
+  Stream<Community> getCommunityByName(String name) {
+    return _communities.doc(name).snapshots().map((event) {
+      return Community.fromMap(event.data() as Map<String, dynamic>);
+    });
+  }
 }
